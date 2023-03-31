@@ -12,24 +12,44 @@ export default function MultiState() {
   const [userAns, setUserAns] = useState("");
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
+let i=0;
   const check = () => {
     console.log(userAns);
-    userAns == rakam[0] + rakam[1] ? setAns("True") : setAns("False");
+    console.log()
+   
+ 
+
   };
+  
+// generateRandom()
   useEffect(() => {
-    const ls = [generateRandom(1, 10), generateRandom(2, 10)]; // list of list 
-    setRakam(ls);
+ // list of list 
+  for( i=0 ; i<10 ;i++){
+   let arr1=generateRandom(i,10)
+   let arr2=generateRandom(i*1,10)
+    setRakam([...rakam,[arr1,arr2]])
+  console.log(i,rakam)
+ 
+  
+ }
+
+  
+  
   }, []);
 
   console.log(rakam);
   return (
     <div style={{ padding: 30 }}>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h1 style={{ marginRight: "10px" }}>{`${rakam[0]} + ${rakam[1]}`}</h1>
+   {
+    rakam.map((e,i)=>{
+      return(
 
+      <div key={e.id} style={{ display: "flex", alignItems: "center" }}>
+        <h1 style={{ marginRight: "10px" }}>{`${e[0]} + ${e[1]}`}</h1>
+{/*  */}
         <input
           type="number"
-          onChange={(e) => setUserAns(e.target.value)}
+          onChange={(e) => setUserAns((prev)=>[...prev,e.target.value])}
           style={{
             width: "70px",
             height: "50px",
@@ -37,11 +57,16 @@ export default function MultiState() {
             padding: 10,
           }}
         />
+        <h1>{ans}</h1>
       </div>
+      
+      )
+    })
+   }
       <button onClick={check} style={{ fontSize: "20px" }}>
         Check
       </button>
-      <h1>{ans}</h1>
+      
     </div>
   );
 }
