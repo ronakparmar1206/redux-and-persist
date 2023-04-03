@@ -9,30 +9,35 @@ function generateRandom(min = 0, max = 100) {
   return rand;
 }
 export default function MultiState() {
-  const [userAns, setUserAns] = useState("");
+  const [userAns, setUserAns] = useState({});
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
+
+
+
   const check = () => {
-    console.log(userAns);
-    console.log()
+console.log(userAns[0])
+ setAns(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false))
    
- 
+ console.log(ans)
 
   };
-  
+  console.log(ans,"answer")
 // generateRandom()
   useEffect(() => {
  // list of list 
+ let array=[]
   for( i=0 ; i<10 ;i++){
    let arr1=generateRandom(i,10)
    let arr2=generateRandom(i*1,10)
-    setRakam([...rakam,[arr1,arr2]])
-  console.log(i,rakam)
+   array.push([arr1,arr2])
+  
  
   
  }
-
+ setRakam(array)
+console.log(rakam,"swaggy")
   
   
   }, []);
@@ -48,16 +53,20 @@ let i=0;
         <h1 style={{ marginRight: "10px" }}>{`${e[0]} + ${e[1]}`}</h1>
 {/*  */}
         <input
-          type="number"
-          onChange={(e) => setUserAns((prev)=>[...prev,e.target.value])}
+          type="text"
+          onChange={(e) =>setUserAns((prev)=>({...prev,[i]:e.target.value}))}
           style={{
             width: "70px",
             height: "50px",
             fontSize: "20px",
             padding: 10,
+            background:`${ans[i]==true?'green':'red'}`
           }}
         />
-        <h1>{ans}</h1>
+        {
+          ans!="" &&   <h1>{`${ans[i]}`}</h1>
+        }
+     
       </div>
       
       )
