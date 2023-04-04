@@ -10,20 +10,33 @@ function generateRandom(min = 0, max = 100) {
 }
 export default function MultiState() {
   const [userAns, setUserAns] = useState({});
+  const[counter,setCounter]=useState(0)
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
 
-
+let interval;
 
   const check = () => {
 console.log(userAns[0])
- setAns(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false))
-   
- console.log(ans)
+ setAns(rakam.map((e,i)=>{
+if(e[0]+e[1]==userAns[i]){
+ 
+  return true;
+}
+else{
+  return false
+}
+
+
+
+ }
+))
+ans&&ans.map((e)=>e!==false?clearInterval(interval):"")
+
 
   };
-  console.log(ans,"answer")
+ 
 // generateRandom()
   useEffect(() => {
  // list of list 
@@ -41,13 +54,25 @@ console.log(rakam,"swaggy")
   
   
   }, []);
+  useEffect(() => {
+   interval = setInterval(() => {
+    setCounter((prev)=>prev+1)
+    }, 1000);
 
-  console.log(rakam);
-  return (
+    return () => {
+      clearInterval(interval);
+    };
+  }, [counter]);
+
+  // console.log(rakam);
+  return (<>
+
+    <h1>{counter}</h1>
     <div style={{ padding: 30 }}>
    {
     rakam.map((e,i)=>{
       return(
+
 
       <div key={e.id} style={{ display: "flex", alignItems: "center" }}>
         <h1 style={{ marginRight: "10px" }}>{`${e[0]} + ${e[1]}`}</h1>
@@ -69,6 +94,7 @@ console.log(rakam,"swaggy")
      
       </div>
       
+            
       )
     })
    }
@@ -77,6 +103,7 @@ console.log(rakam,"swaggy")
       </button>
       
     </div>
+  </>
   );
 }
 
