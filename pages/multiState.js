@@ -50,7 +50,7 @@ console.log(newState.includes(false))
 console.log(rakam,"swaggy")
   
   
-  }, []);
+  }, [toggle]);
   useEffect(() => {
     if(toggle){
       interval = setInterval(() => {
@@ -73,7 +73,7 @@ console.log(rakam,"swaggy")
 
     <h1>{minutes}:{seconds}</h1>
     <button onClick={()=>settoggle(true)}>Start</button>
-    <button onClick={()=>{setminutes(0),setseconds(0),settoggle(false)}}>Reset</button>
+    <button onClick={()=>{setminutes(0),setseconds(0),settoggle(false),setAns("")}}>Reset</button>
     <div style={{ padding: 30 }}>
    {
     toggle&&
