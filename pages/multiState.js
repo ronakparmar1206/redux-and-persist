@@ -8,6 +8,7 @@ function generateRandom(min = 0, max = 100) {
 
   return rand;
 }
+
 export default function MultiState() {
   const [userAns, setUserAns] = useState({});
   // const[counter,setCounter]=useState(0)
