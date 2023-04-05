@@ -10,38 +10,34 @@ function generateRandom(min = 0, max = 100) {
 }
 export default function MultiState() {
   const [userAns, setUserAns] = useState({});
-  const[counter,setCounter]=useState(0)
+  // const[counter,setCounter]=useState(0)
+  const[seconds,setseconds]=useState(0)
+  const[toggle,settoggle]=useState(false)
+  const[minutes,setminutes]=useState(0)
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
-
 let interval;
+
 
   const check = () => {
 console.log(userAns[0])
- setAns(rakam.map((e,i)=>{
-if(e[0]+e[1]==userAns[i]){
- 
-  return true;
-}
-else{
-  return false
-}
-
-
-
- }
-))
-ans&&ans.map((e)=>e!==false?clearInterval(interval):"")
+ let newState=rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)
+ console.log(newState,">><<")
+ setAns(()=>(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)))
+  // ans.map((e)=>console.log(e[i]))
+  // console.log(newState,"?>>?")
+console.log(newState.includes(false))
+  !newState.includes(false)?clearInterval(interval):""
 
 
   };
- 
+  // console.log(ans,"answer")
 // generateRandom()
   useEffect(() => {
  // list of list 
  let array=[]
-  for( i=0 ; i<10 ;i++){
+  for( i=0 ; i<3 ;i++){
    let arr1=generateRandom(i,10)
    let arr2=generateRandom(i*1,10)
    array.push([arr1,arr2])
@@ -55,21 +51,31 @@ console.log(rakam,"swaggy")
   
   }, []);
   useEffect(() => {
-   interval = setInterval(() => {
-    setCounter((prev)=>prev+1)
-    }, 1000);
+    if(toggle){
+      interval = setInterval(() => {
+        setseconds((prev)=>prev+1);
+        if(seconds===59){
+          setminutes(minutes+1)
+          setseconds(0)
+        }
+        }, 1000);
+    }
+   
 
     return () => {
       clearInterval(interval);
     };
-  }, [counter]);
+  },[seconds,minutes,toggle]);
 
   // console.log(rakam);
   return (<>
 
-    <h1>{counter}</h1>
+    <h1>{minutes}:{seconds}</h1>
+    <button onClick={()=>settoggle(true)}>Start</button>
+    <button onClick={()=>{setminutes(0),setseconds(0),settoggle(false)}}>Reset</button>
     <div style={{ padding: 30 }}>
    {
+    toggle&&
     rakam.map((e,i)=>{
       return(
 
@@ -97,10 +103,14 @@ console.log(rakam,"swaggy")
             
       )
     })
-   }
-      <button onClick={check} style={{ fontSize: "20px" }}>
+
+   }{
+    toggle&& <button onClick={check} style={{ fontSize: "20px" }}>
         Check
       </button>
+   }
+  
+   
       
     </div>
   </>
