@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useTimer from "./components/useTimer";
 
 function generateRandom(min = 0, max = 100) {
   let difference = max - min;
@@ -12,14 +13,14 @@ function generateRandom(min = 0, max = 100) {
 export default function MultiState() {
   const [userAns, setUserAns] = useState({});
   // const[counter,setCounter]=useState(0)
-  const[seconds,setseconds]=useState(0)
-  const[toggle,settoggle]=useState(false)
-  const[minutes,setminutes]=useState(0)
+  // const[seconds,setseconds]=useState(0)
+  // const[toggle,settoggle]=useState(false)
+  // const[minutes,setminutes]=useState(0)
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
 let interval;
-
+const{timer,seconds,minutes,setminutes,setseconds,toggle,settoggle}=useTimer()
 
   const check = () => {
 console.log(userAns[0])
@@ -52,16 +53,16 @@ console.log(rakam,"swaggy")
   
   }, [toggle]);
   useEffect(() => {
-    if(toggle){
-      interval = setInterval(() => {
-        setseconds((prev)=>prev+1);
-        if(seconds===59){
-          setminutes(minutes+1)
-          setseconds(0)
-        }
-        }, 1000);
-    }
-   
+    // if(toggle){
+    //   interval = setInterval(() => {
+    //     setseconds((prev)=>prev+1);
+    //     if(seconds===59){
+    //       setminutes(minutes+1)
+    //       setseconds(0)
+    //     }
+    //     }, 1000);
+    // }
+   timer()
 
     return () => {
       clearInterval(interval);
