@@ -19,8 +19,8 @@ export default function MultiState() {
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
-let interval;
-const{timer,seconds,minutes,setminutes,setseconds,toggle,settoggle}=useTimer()
+// let interval;
+const{seconds,minutes,start,reset,toggle}=useTimer()
 
   const check = () => {
 console.log(userAns[0])
@@ -52,29 +52,32 @@ console.log(rakam,"swaggy")
   
   
   }, [toggle]);
-  useEffect(() => {
-    // if(toggle){
-    //   interval = setInterval(() => {
-    //     setseconds((prev)=>prev+1);
-    //     if(seconds===59){
-    //       setminutes(minutes+1)
-    //       setseconds(0)
-    //     }
-    //     }, 1000);
-    // }
-   timer()
+  // useEffect(() => {
+  //   // if(toggle){
+  //   //   interval = setInterval(() => {
+  //   //     setseconds((prev)=>prev+1);
+  //   //     if(seconds===59){
+  //   //       setminutes(minutes+1)
+  //   //       setseconds(0)
+  //   //     }
+  //   //     }, 1000);
+  //   // }
+  //   if(toggle){
+  //     timer()
+  //   }
 
-    return () => {
-      clearInterval(interval);
-    };
-  },[seconds,minutes,toggle]);
+
+  //   return () => {
+  //     clearInterval(()=>timer);
+  //   };
+  // },[seconds,minutes,toggle]);
 
   // console.log(rakam);
   return (<>
 
     <h1>{minutes}:{seconds}</h1>
-    <button onClick={()=>settoggle(true)}>Start</button>
-    <button onClick={()=>{setminutes(0),setseconds(0),settoggle(false),setAns("")}}>Reset</button>
+    <button onClick={start}>Start</button>
+    <button onClick={reset}>Reset</button>
     <div style={{ padding: 30 }}>
    {
     toggle&&
