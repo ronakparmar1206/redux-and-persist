@@ -17,7 +17,7 @@ export default function MultiState() {
   const [ans, setAns] = useState("");
 let i=0;
 // let interval;
-const{seconds,minutes,start,reset,toggle}=useTimer()
+const{seconds,minutes,start,reset,toggle,clear}=useTimer()
 
   const check = () => {
 console.log(userAns[0])
@@ -26,7 +26,7 @@ console.log(userAns[0])
  setAns(()=>(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)))
   
 console.log(newState.includes(false))
-  !newState.includes(false)?clearInterval(interval):""
+  !newState.includes(false)?clear():""
 
 
   };
@@ -72,7 +72,7 @@ console.log(rakam,"swaggy")
 
     <h1>{minutes}:{seconds}</h1>
     <button onClick={start}>Start</button>
-    <button onClick={reset}>Reset</button>
+    <button onClick={()=>{reset();setAns("")}}>Reset</button>
     <div style={{ padding: 30 }}>
    {
     toggle&&
