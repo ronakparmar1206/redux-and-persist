@@ -12,10 +12,7 @@ function generateRandom(min = 0, max = 100) {
 
 export default function MultiState() {
   const [userAns, setUserAns] = useState({});
-  // const[counter,setCounter]=useState(0)
-  // const[seconds,setseconds]=useState(0)
-  // const[toggle,settoggle]=useState(false)
-  // const[minutes,setminutes]=useState(0)
+  
   const [rakam, setRakam] = useState([]);
   const [ans, setAns] = useState("");
 let i=0;
@@ -27,17 +24,15 @@ console.log(userAns[0])
  let newState=rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)
  console.log(newState,">><<")
  setAns(()=>(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)))
-  // ans.map((e)=>console.log(e[i]))
-  // console.log(newState,"?>>?")
+  
 console.log(newState.includes(false))
   !newState.includes(false)?clearInterval(interval):""
 
 
   };
-  // console.log(ans,"answer")
-// generateRandom()
+
   useEffect(() => {
- // list of list 
+
  let array=[]
   for( i=0 ; i<3 ;i++){
    let arr1=generateRandom(i,10)
@@ -122,13 +117,3 @@ console.log(rakam,"swaggy")
   );
 }
 
-// kids maths game
-
-// 10 - 8 [ ]
-// check
-// green or red
-
-// multiple rakam
-// const rakam = [[1,10], [2,10]]
-// userAns = [12, 19]
-// check index wise checking
