@@ -20,12 +20,12 @@ let i=0;
 const{seconds,minutes,start,reset,toggle,clear}=useTimer()
 
   const check = () => {
-console.log(userAns[0])
+// console.log(userAns[0])
  let newState=rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)
- console.log(newState,">><<")
+//  console.log(newState,">><<")
  setAns(()=>(rakam.map((e,i)=>e[0]+e[1]==userAns[i]?true:false)))
   
-console.log(newState.includes(false))
+// console.log(newState.includes(false))
   !newState.includes(false)?clear():""
 
 
@@ -43,7 +43,7 @@ console.log(newState.includes(false))
   
  }
  setRakam(array)
-console.log(rakam,"swaggy")
+// console.log(rakam,"swaggy")
   
   
   }, [toggle]);
