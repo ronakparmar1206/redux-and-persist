@@ -7,9 +7,9 @@ const useTimer=()=>{
     const[seconds,setseconds]=useState(0)
     const[minutes,setminutes]=useState(0)
           
-    let interval;        
+          
 useEffect(() => {
-  
+  let interval;
   if(toggle){
    interval= setInterval(() => {
        setseconds((prev)=>prev+1);
@@ -21,7 +21,7 @@ useEffect(() => {
    }
 
   return () => {
-clearInterval(interval)
+    clearInterval(interval)
   }
 }, [seconds,minutes,toggle])
 const start=()=>{
@@ -30,10 +30,7 @@ const start=()=>{
 const reset=()=>{
   setminutes(0),setseconds(0),settoggle(false)
 }
-const clear=()=>{
-  clearInterval(interval)
-}
-return {seconds,minutes,start,reset,toggle,clear}
+return {seconds,minutes,start,reset,toggle}
         
     }
    
