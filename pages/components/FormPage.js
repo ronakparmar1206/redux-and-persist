@@ -24,7 +24,7 @@ const FormPage = () => {
    const dispatch = useDispatch()
    const state=useSelector((state)=>state)
   // ---
-  const days = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const days = [1, 2, 3, 4, 5, 6, 7, 8];
   const month = ["jan", "feb", "march", "apir", "may", "jun", "july"];
   const year = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009];
 
