@@ -7,7 +7,7 @@ const SignUpSlice=createSlice({
     initialState:[],
     reducers:{
         getUserDetails(state,action){
-state.push(action.payload)
+ return state=action.payload
         }  
     }
 })

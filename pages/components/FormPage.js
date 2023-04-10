@@ -16,12 +16,13 @@ import { object, string, number, date, InferType } from 'yup';
 import TextField from "./TextField";
 import SelectField from "./SelectField";
 import Genderfield from "./Genderfield";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserDetials_fun } from "../redux/slices.js/SignUpSlice";
 const FormPage = () => {
 
   // ---
    const dispatch = useDispatch()
+   const state=useSelector((state)=>state)
   // ---
   const days = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const month = ["jan", "feb", "march", "apir", "may", "jun", "july"];
@@ -64,7 +65,7 @@ const FormPage = () => {
       >
         <Formik
           initialValues={{
-            firstName: "",
+            firstName: `${state.signup.firstName}`,
             lastName: "",
              email: "",
             password: "",
